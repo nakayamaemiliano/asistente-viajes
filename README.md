@@ -274,9 +274,11 @@ Ejemplo de respuesta:
 
 ## Variables de entorno
 
-La aplicacion necesita estas variables:
+La aplicacion necesita estas variables para conectarse a MySQL, firmar tokens JWT e integrarse con Gemini:
 
 ```text
+DB_URL=jdbc:mysql://localhost:3306/asistente_viajes?useSSL=false&serverTimezone=America/Argentina/Buenos_Aires&allowPublicKeyRetrieval=true
+DB_USERNAME=root
 GEMINI_API_KEY=tu_api_key_de_gemini
 JWT_SECRET_KEY=clave_larga_para_firmar_tokens_jwt
 ```
@@ -284,17 +286,21 @@ JWT_SECRET_KEY=clave_larga_para_firmar_tokens_jwt
 Ejemplo en PowerShell:
 
 ```powershell
+$env:DB_URL="jdbc:mysql://localhost:3306/asistente_viajes?useSSL=false&serverTimezone=America/Argentina/Buenos_Aires&allowPublicKeyRetrieval=true"
+$env:DB_USERNAME="root"
 $env:GEMINI_API_KEY="tu_api_key_de_gemini"
 $env:JWT_SECRET_KEY="mi-clave-super-secreta-para-jwt-de-minimo-48-caracteres"
 ```
 
+No subas claves reales al repositorio. Las variables de entorno permiten mantener credenciales y secretos fuera del codigo fuente.
+
 ## Base de datos
 
-La configuracion actual usa MySQL local:
+La configuracion actual usa MySQL local. La URL y el usuario se toman desde variables de entorno; el password queda vacio para el entorno local actual:
 
 ```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/asistente_viajes?useSSL=false&serverTimezone=America/Argentina/Buenos_Aires&allowPublicKeyRetrieval=true
-spring.datasource.username=root
+spring.datasource.url=${DB_URL}
+spring.datasource.username=${DB_USERNAME}
 spring.datasource.password=
 spring.jpa.hibernate.ddl-auto=update
 ```
@@ -318,6 +324,8 @@ CREATE DATABASE asistente_viajes;
 3. Configurar variables de entorno:
 
 ```powershell
+$env:DB_URL="jdbc:mysql://localhost:3306/asistente_viajes?useSSL=false&serverTimezone=America/Argentina/Buenos_Aires&allowPublicKeyRetrieval=true"
+$env:DB_USERNAME="root"
 $env:GEMINI_API_KEY="tu_api_key_de_gemini"
 $env:JWT_SECRET_KEY="mi-clave-super-secreta-para-jwt-de-minimo-48-caracteres"
 ```
