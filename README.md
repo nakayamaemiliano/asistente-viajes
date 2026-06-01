@@ -477,24 +477,3 @@ src/main/java/com/asistente_viajes_api/project
 ├── security
 └── service
 ```
-
-## Estado actual
-
-Implementado:
-
-- CRUD de entidades principales.
-- Seguridad JWT con roles.
-- Integracion con REST Countries.
-- Integracion con Open-Meteo.
-- Integracion con Gemini para recomendaciones IA.
-- Swagger/OpenAPI.
-- Coleccion Postman de seguridad.
-
-Proximas mejoras posibles:
-
-- Agregar Dockerfile y Docker Compose.
-- Sumar tests unitarios y de integracion.
-- Mejorar respuesta de seguridad sin token de `403` a `401`.
-- Agregar filtros de busqueda avanzados para consultas de viaje.
-- Incorporar migraciones con Flyway o Liquibase.
-- Preparar datos iniciales con seeders o scripts SQL.
