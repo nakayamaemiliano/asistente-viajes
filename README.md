@@ -390,6 +390,38 @@ asesor@test.com / 123456 / ASESOR
 lector@test.com / 123456 / LECTOR
 ```
 
+## Tests
+
+El proyecto incluye tests automatizados para cubrir la logica principal del backend y las reglas de seguridad.
+
+Se pueden ejecutar con:
+
+```powershell
+.\mvnw clean test
+```
+
+Actualmente hay tests unitarios para:
+
+- `ClienteServiceImp`
+- `DestinoServiceImp`
+- `ConsultaViajeServiceImp`
+- `RecomendacionIAServiceImp`
+- `JwtService`
+
+Tambien se agregaron tests web de seguridad para validar permisos por rol sobre endpoints representativos:
+
+- acceso a usuarios solo para `ADMIN`
+- creacion de clientes permitida para `ASESOR`
+- creacion de clientes bloqueada para `LECTOR`
+- eliminacion de destinos permitida para `ADMIN`
+- eliminacion de destinos bloqueada para `ASESOR`
+
+Resultado actual:
+
+```text
+Tests run: 55, Failures: 0, Errors: 0
+```
+
 ## Ejemplos de requests
 
 ### Crear cliente
